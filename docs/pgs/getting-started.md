@@ -8,6 +8,13 @@ The graphical report includes all meta-data about the scores in a single place a
 
 An extensive quality control pipeline is executed automatically to detect and fix possible strand-flips and to filter out missing SNPs to prevent systematic errors (e.g. lower scores for individuals with missing or wrong aligned genetic data).
 
+When incorporating the Polygenic Score Calculation extension in your research, please cite the following papers:
+
+> Forer L, Taliun D, LeFaive J, Smith AV, Boughton AP, Coassin S, Lamina C, Kronenberg F, Fuchsberger C, Schönherr S. Imputation Server PGS: an automated approach to calculate polygenic risk scores on imputation servers. Nucleic Acids Res. 2024 Jul 5;52(W1):W70-W77. doi: 10.1093/nar/gkae331. PMID: 38709879; PMCID: PMC11223871.
+
+> Samuel A. Lambert, Laurent Gil, Simon Jupp, Scott C. Ritchie, Yu Xu, Annalisa Buniello, Aoife McMahon, Gad Abraham, Michael Chapman, Helen Parkinson, John Danesh, Jacqueline A. L. MacArthur and Michael Inouye. The Polygenic Score Catalog as an open database for reproducibility and systematic evaluation. Nature Genetics. doi: 10.1038/s41588-021-00783-5 (2021).
+
+
 ## Getting started
 
 To utilize the Polygenic Score Calculation extension on ImputationServer, you must first [register](https://imputationserver.sph.umich.edu/index.html#!pages/register) for an account.
@@ -16,13 +23,6 @@ An activation email will be sent to the provided address. Once your email addres
 **Please note that the extension can also be used with a username without an email. However, without an email, notifications are not sent, and access to genotyped data may be limited.**
 
 No dataset at hand? No problem, download our example dataset to test the PGS extension: [50-samples.zip](https://imputationserver.sph.umich.edu/resources/50-samples.zip).
-
-
-When incorporating the Polygenic Score Calculation extension in your research, please cite the following papers:
-
-> Das S, Forer L, Schönherr S, Sidore C, Locke AE, Kwong A, Vrieze S, Chew EY, Levy S, McGue M, Schlessinger D, Stambolian D, Loh PR, Iacono WG, Swaroop A, Scott LJ, Cucca F, Kronenberg F, Boehnke M, Abecasis GR, Fuchsberger C. [Next-generation genotype imputation service and methods](https://www.ncbi.nlm.nih.gov/pubmed/27571263). Nature Genetics 48, 1284–1287 (2016).
-
-> Samuel A. Lambert, Laurent Gil, Simon Jupp, Scott C. Ritchie, Yu Xu, Annalisa Buniello, Aoife McMahon, Gad Abraham, Michael Chapman, Helen Parkinson, John Danesh, Jacqueline A. L. MacArthur and Michael Inouye. The Polygenic Score Catalog as an open database for reproducibility and systematic evaluation. Nature Genetics. doi: 10.1038/s41588-021-00783-5 (2021).
 
 ## Setting up your first Polygenic Score Calculation job
 
