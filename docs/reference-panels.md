@@ -20,6 +20,8 @@ The HRC panel consists of 64,940 haplotypes of predominantly European ancestry.
 | Chromosomes | 1-22, X|
 | Website | [http://www.haplotype-reference-consortium.org](http://www.haplotype-reference-consortium.org); [HRC r1.1 Release Note](https://imputationserver.sph.umich.edu/start.html#!pages/hrc-r1.1) |
 
+---
+
 ## 1000 Genomes Phase 3 (Version 5)
 
 Phase 3 of the 1000 Genomes Project consists of 5,008 haplotypes from 26 populations across the world.
@@ -31,7 +33,7 @@ Phase 3 of the 1000 Genomes Project consists of 5,008 haplotypes from 26 populat
 | Chromosomes | 1-22, X|
 | Website | [http://www.internationalgenome.org](http://www.internationalgenome.org) |
 
-
+---
 
 ## Genome Asia Pilot - GAsP
 
@@ -42,6 +44,8 @@ Phase 3 of the 1000 Genomes Project consists of 5,008 haplotypes from 26 populat
 | Chromosomes | 1-22 |
 | Publication | [https://www.nature.com/articles/s41586-019-1793-z](https://www.nature.com/articles/s41586-019-1793-z) |
 
+---
+
 ## Genome Asia v2 - GAsP
 
 | ||
@@ -51,6 +55,7 @@ Phase 3 of the 1000 Genomes Project consists of 5,008 haplotypes from 26 populat
 | Chromosomes | 1-22 |
 | Publication | [https://www.nature.com/articles/s41586-019-1793-z](https://www.nature.com/articles/s41586-019-1793-z) |
 
+---
 
 ## Four-digit Multi-ethnic HLA v1 (2021)
 
@@ -65,7 +70,9 @@ The multi-ethnic HLA panel consists of 36,586 haplotypes of five global populati
 
 Please cite this manuscript if you would like to include imputed results from the panel in  your work:
 
-Luo, Y., Kanai, M., Choi, W., Li, X., Yamamoto, K., Ogawa, K., Gutierrez-Arcelus, M., Gregersen, P. K., Stuart, P. E., Elder, J. T., Fellay, J., Carrington, M., Haas, D. W., Guo, X., Palmer, N. D., Chen, Y.-D. I., Rotter, J. I., Taylor, K. D., Rich, S., … Raychaudhuri, S. (2020). A high-resolution HLA reference panel capturing global population diversity enables multi-ethnic fine-mapping in HIV host response. https://doi.org/10.1101/2020.07.16.20155606
+> Luo, Y., Kanai, M., Choi, W., Li, X., Yamamoto, K., Ogawa, K., Gutierrez-Arcelus, M., Gregersen, P. K., Stuart, P. E., Elder, J. T., Fellay, J., Carrington, M., Haas, D. W., Guo, X., Palmer, N. D., Chen, Y.-D. I., Rotter, J. I., Taylor, K. D., Rich, S., … Raychaudhuri, S. (2020). A high-resolution HLA reference panel capturing global population diversity enables multi-ethnic fine-mapping in HIV host response. https://doi.org/10.1101/2020.07.16.20155606
+
+---
 
 ## Four-digit Multi-ethnic HLA v2 (2022)
 
@@ -102,6 +109,8 @@ Luo, Y., Kanai, M., Choi, W., Li, X., Yamamoto, K., Ogawa, K., Gutierrez-Arcelus
 
   - We output 2-digit and 4-digit-resolution HLA alleles. We do not output higher resolution HLA alleles in this version.
 
+---
+
 ## CAAPA - African American Panel
 
   Whole genome sequences were available on 883 individuals from 19 case-control studies of asthma included in the Consortium on Asthma among African-ancestry Populations in the Americas (CAAPA) and were used to summarize the genomic contributions to individuals of African ancestry.
@@ -113,6 +122,7 @@ Luo, Y., Kanai, M., Choi, W., Li, X., Yamamoto, K., Ogawa, K., Gutierrez-Arcelus
   | Chromosomes | 1-22 |
   | Website | [http://www.caapa-project.org/](http://www.caapa-project.org/). Further details can also be found [here](https://imputationserver.sph.umich.edu/start.html#!pages/caapa) |
 
+---
 
 ## HRC (Version r1 2015)
 
@@ -125,6 +135,8 @@ This HRC panel consists of 64,976 haplotypes of predominantly European ancestry.
 | Chromosomes | 1-22, X|
 | Website | [http://www.haplotype-reference-consortium.org](http://www.haplotype-reference-consortium.org); [HRC r1 Release Note](https://imputationserver.sph.umich.edu/start.html#!pages/hrc) |
 
+---
+
 ## 1000 Genomes Phase 1 (Version 3)
 
 | ||
@@ -133,6 +145,8 @@ This HRC panel consists of 64,976 haplotypes of predominantly European ancestry.
 | Sites (chr1-22) | 28,975,367 |
 | Chromosomes | 1-22, X|
 | Website | [http://www.internationalgenome.org](http://www.internationalgenome.org) |
+
+---
 
 ## HapMap 2
 
