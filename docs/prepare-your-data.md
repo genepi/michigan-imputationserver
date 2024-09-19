@@ -1,21 +1,21 @@
 # Data preparation
 
-Michigan Imputation Server accepts VCF files compressed with [bgzip](http://samtools.sourceforge.net/tabix.shtml). Please make sure the following requirements are met:
+Michigan Imputation Server 2 accepts VCF files compressed with [bgzip](http://samtools.sourceforge.net/tabix.shtml). Please ensure that the following requirements are met:
 
 - Create a separate vcf.gz file for each chromosome.
-- Variations must be sorted by genomic position.
+- Variants must be sorted by genomic position.
 - GRCh37 or GRCh38 coordinates are required.
 
 !!! note
-    Several \*.vcf.gz files can be uploaded at once.
+    Multiple \*.vcf.gz files can be uploaded at once.
 
 
 
 ## Quality Control for HRC, 1000G and CAAPA imputation
 
-Will Rayner provides a great toolbox to prepare data: [HRC or 1000G Pre-imputation Checks](http://www.well.ox.ac.uk/~wrayner/tools/).
+Will Rayner provides an excellent toolbox for preparing data: [HRC or 1000G Pre-imputation Checks](http://www.well.ox.ac.uk/~wrayner/tools/).
 
-The main steps for HRC are:
+The main steps for using HRC are:
 
 ### Download tool and sites
 
@@ -61,7 +61,7 @@ Several tools are available:
 plink --ped study_chr1.ped --map study_chr1.map --recode vcf --out study_chr1
 ````
 
-Create a sorted vcf.gz file using [BCFtools](https://samtools.github.io/bcftools):
+Create a sorted vcf.gz file using [bcftools](https://samtools.github.io/bcftools):
 
 ````sh
 bcftools sort study_chr1.vcf -Oz -o study_chr1.vcf.gz
@@ -69,7 +69,7 @@ bcftools sort study_chr1.vcf -Oz -o study_chr1.vcf.gz
 
 ### CheckVCF
 
-Use [checkVCF](https://github.com/zhanxw/checkVCF) to ensure that the VCF files are valid. checkVCF proposes "Action Items" (e.g. upload to sftp server), which can be ignored. Only the validity should be checked with this command.
+Use [checkVCF](https://github.com/zhanxw/checkVCF) to ensure that the VCF files are valid. CheckVCF provides “Action Items” (e.g., uploading to an SFTP server) that can be ignored. Focus solely on verifying the validity of the files with this tool.
 
 ````sh
 checkVCF.py -r human_g1k_v37.fasta -o out mystudy_chr1.vcf.gz

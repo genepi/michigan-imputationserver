@@ -10,7 +10,7 @@ hide:
 # Michigan Imputation Server 2<br><small>Free Next-Generation Genotype Imputation Platform</small>
 
 
-[Michigan Imputation Server 2](https://imputationserver.sph.umich.edu) provides a free genotype imputation service using [Minimac4](http://genome.sph.umich.edu/wiki/Minimac4). You can upload phased or unphased GWAS genotypes and receive phased and imputed genomes in return. Our server supports imputation from [numerous reference panels](reference-panels.md). For all uploaded datasets a comprehensive QC is performed. The complete source code is hosted on [GitHub](https://github.com/genepi/imputationserver2/).
+[Michigan Imputation Server 2](https://imputationserver.sph.umich.edu) provides a free genotype imputation service (chromosomes 1-22, chromosome X and HLA region) using [Minimac4](http://genome.sph.umich.edu/wiki/Minimac4). You can upload phased or unphased GWAS genotypes and receive phased and imputed genomes in return. Our server supports imputation from [numerous reference panels](reference-panels.md). For all uploaded datasets a comprehensive QC is performed. The complete source code is hosted on [GitHub](https://github.com/genepi/imputationserver2/).
 
 Please cite this paper if you use Michigan Imputation Server 2:
 

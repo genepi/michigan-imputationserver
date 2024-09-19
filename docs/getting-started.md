@@ -3,7 +3,7 @@
 To use Michigan Imputation Server 2, [registration](https://imputationserver.sph.umich.edu/index.html#!pages/register) is required.
 We will send an activation email to the provided address. Please follow the instructions in the email to activate your account. If the email does not arrive, ensure you have entered the correct address and check your spam folder. For PGS calculation, registration via email is optional.
 
-**Once the email address has been verified, the service can be used at no cost.**
+**Once the account is active, the service can be used at no cost.**
 
 Please cite this paper if you use Michigan Imputation Server 2:
 
