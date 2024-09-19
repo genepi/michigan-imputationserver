@@ -35,6 +35,7 @@ nav:
 - Genotype Imputation:
   - Getting Started: getting-started.md
   - Data Preparation: prepare-your-data.md
+  - Changes in Allele Swap Handling: qc-allele-swaps.md
   - Pipeline Overview: pipeline.md
   - Security: data-sensitivity.md
   - FAQ: faq.md

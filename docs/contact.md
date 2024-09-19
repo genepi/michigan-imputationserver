@@ -8,7 +8,7 @@ hide:
 
 The source code of Michigan Imputation Server 2 is  available on [GitHub](https://github.com/genepi/imputationserver2). Feel free to create issues and pull requests. Before contacting us, please have a look at the [FAQ page](faq) first. 
 
-## Michigan Imputation Server Team
+## Michigan Imputation Server 2 Team
 
 Michigan Imputation Server provides a free genotype imputation service using Minimac4. You can upload phased or unphased GWAS genotypes and receive phased and imputed genomes in return. For all uploaded data sets an extensive QC is performed.
 

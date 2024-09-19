@@ -23,7 +23,7 @@ Please cite this paper if you use Michigan Imputation Server 2:
 
 <p>
     <small class="text-muted"><i class="far fa-calendar-alt"></i> 19 September 2024</small><br>
-    We have migrated to a new architecture and released Michigan Imputation Server 2. Please note the change regarding allele swaps in Minimac4, which may affect your QC.
+   We have successfully migrated to a new architecture and released Michigan Imputation Server 2. Please note the major change regarding allele swaps! <a href="./qc-allele-swaps" target="_blank"> <br> Learn more.</a>
 </p>
 
 <p>

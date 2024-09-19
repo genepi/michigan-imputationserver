@@ -136,7 +136,7 @@ In this step, we check each variant and exclude it if it meets any of the follow
 All filtered variants are listed in a file called `statistics.txt`, which can be downloaded by clicking the provided link. More information about our QC pipeline can be found [here](/pipeline).
 
 !!! important
-    Due to changes in Minimac 4, Michigan Imputation Server 2 now includes filtering and checks for allele swaps. For more information, please read HERE.
+    Due to changes in Minimac 4, Michigan Imputation Server 2 now includes filtering and checks for allele swaps. For more information, please click [here](./qc-allele-swaps.md).
 
 ![](images/quality-control02.png)
 
