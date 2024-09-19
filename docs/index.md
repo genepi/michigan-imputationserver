@@ -7,12 +7,12 @@ hide:
 ![](images/logo.png){.right}
 
 
-# Michigan Imputation Server<br><small>Free Next-Generation Genotype Imputation Platform</small>
+# Michigan Imputation Server 2<br><small>Free Next-Generation Genotype Imputation Platform</small>
 
 
-[Michigan Imputation Server](https://imputationserver.sph.umich.edu) provides a free genotype imputation service using [Minimac4](http://genome.sph.umich.edu/wiki/Minimac4). You can upload phased or unphased GWAS genotypes and receive phased and imputed genomes in return. Our server offers imputation from 1000 Genomes (Phase 1 and 3), CAAPA, [HRC](http://www.haplotype-reference-consortium.org/) and the [TOPMed](http://nhlbiwgs.org/) reference panel. For all uploaded datasets an extensive QC is performed. The complete source code is hosted on [GitHub](https://github.com/genepi/imputationserver2/).
+[Michigan Imputation Server 2](https://imputationserver.sph.umich.edu) provides a free genotype imputation service using [Minimac4](http://genome.sph.umich.edu/wiki/Minimac4). You can upload phased or unphased GWAS genotypes and receive phased and imputed genomes in return. Our server supports imputation from [numerous reference panels](reference-panels.md). For all uploaded datasets a comprehensive QC is performed. The complete source code is hosted on [GitHub](https://github.com/genepi/imputationserver2/).
 
-Please cite this paper if you use Michigan Imputation Server in your publication:
+Please cite this paper if you use Michigan Imputation Server 2:
 
 > Das S, Forer L, Schönherr S, Sidore C, Locke AE, Kwong A, Vrieze S, Chew EY, Levy S, McGue M, Schlessinger D, Stambolian D, Loh PR, Iacono WG, Swaroop A, Scott LJ, Cucca F, Kronenberg F, Boehnke M, Abecasis GR, Fuchsberger C. [Next-generation genotype imputation service and methods](https://www.ncbi.nlm.nih.gov/pubmed/27571263). Nature Genetics 48, 1284–1287 (2016).
 
@@ -20,6 +20,11 @@ Please cite this paper if you use Michigan Imputation Server in your publication
 
 
 ## Latest News
+
+<p>
+    <small class="text-muted"><i class="far fa-calendar-alt"></i> 19 September 2024</small><br>
+    We have migrated to a new architecture and released Michigan Imputation Server 2. Please note the change regarding allele swaps in Minimac4, which may affect your QC.
+</p>
 
 <p>
     <small class="text-muted"><i class="far fa-calendar-alt"></i> 21 May 2021</small><br>
