@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../prepare-your-data/">
+        <link rel="prev" href="../qc-allele-swaps/">
       
       
         <link rel="next" href="../data-sensitivity/">
@@ -449,6 +449,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../qc-allele-swaps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes in Allele Swap Handling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -523,21 +544,6 @@
       Imputation
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Imputation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -910,21 +916,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Imputation">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -976,62 +967,78 @@
 <p>Our pipeline performs the following steps:</p>
 <h2 id="quality-control">Quality Control<a class="headerlink" href="#quality-control" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Create chunks with a size of 20 Mb</li>
+<li>Create chunks of 20 Mb each.</li>
 <li>
-<p>For each 20Mb chunk we perform the following checks:</p>
+<p>For each 20Mb chunk, we perform the following checks:</p>
 <p><strong>On Chunk level:</strong></p>
 <ul>
-<li>Determine amount of valid variants: A variant is valid iff it is included in the reference panel. At least 3 variants must be included.</li>
+<li>Determine the number of valid variants: A variant is considered valid if it is included in the reference panel. At least 3 variants must be included, though some reference panels have different limits (e.g., HRC requires 20 SNPs).</li>
 <li>Determine amount of variants found in the reference panel: At least 50 % of the variants must be be included in the reference panel.</li>
-<li>Determine sample call rate: At least 50 % of the variants must be called for each sample.  </li>
+<li>Determine the sample call rate: At least 50% of the variants must be called for each sample.  </li>
 </ul>
 <p>Chunk exclusion: if (#variants &lt; 3 || overlap &lt; 50% || sampleCallRate &lt; 50%)</p>
 <p><strong>On Variant level:</strong></p>
 <ul>
-<li>Check alleles: Only A,C,G,T are allowed</li>
-<li>Calculate alternative allele frequency (AF): Mark all with a AF &gt; 0.5.</li>
-<li>Calculate SNP call rate</li>
-<li>Calculate chi square for each variant (reference panel vs. study data)</li>
-<li>Determine allele switches: Compare ref and alt of reference panel with study data (A/T and C/G variants are ignored).</li>
-<li>Determine strand flips: After eliminating possible allele switches, flip and compare ref/alt from reference panel with study data.</li>
-<li>Determine allele switches in combination with strand flips: Combine the two rules from above.  </li>
+<li>Check alleles: Only A,C,G and T are allowed</li>
+<li>Calculate alternative allele frequency (AF): Mark all variants with an AF &gt; 0.5.</li>
+<li>Calculate the SNP call rate</li>
+<li>Calculate the chi-square for each variant (reference panel vs. study data).</li>
+<li>Determine allele switches: Compare the reference and alternate alleles of the reference panel with the study data.</li>
+<li>Determine strand flips: After eliminating possible allele switches, flip and compare the reference and alternate alleles from the reference panel with the study data.</li>
+<li>Determine allele switches in combination with strand flips: Apply the two rules above together.</li>
 </ul>
-<p>Variant exclusion: Variants are excluded in case of: [a] invalid alleles occur (!(A,C,G,T)), [b] duplicates (DUP filter or (pos - 1 == pos)), [c] indels, [d] monomorphic sites, [e] allele mismatch between reference panel and study, [f] SNP call rate &lt; 90%.</p>
+<p>Variant exclusion: Variants are excluded in case of: [a] invalid alleles occur (!(A,C,G,T)), [b] duplicates (DUP filter or (pos - 1 == pos)), [c] indels, [d] monomorphic sites, [e] allele mismatch between reference panel and study, [f] SNP call rate &lt; 90%, [g] more than 100 strand or allele switches.</p>
 <p><strong>On Sample level:</strong></p>
 <ul>
-<li>For chr1-22, a chunk is excluded if one sample has a call rate &lt; 50 %. Only complete chunks are excluded, not samples (see "On Chunk level" above)</li>
+<li>A chunk is excluded if any sample within that chunk has a call rate &lt; 50%. Only complete chunks are excluded, not individual samples (see “On Chunk Level” above).</li>
 </ul>
 </li>
 <li>
-<p>Perform a liftOver step, if build of input data and reference panel does not match (b37 vs b38).</p>
+<p>Perform a liftOver step if the build of the input data does not match the build of the reference panel (e.g., hg37 vs. hg38).</p>
 </li>
 </ul>
 <h2 id="phasing">Phasing<a class="headerlink" href="#phasing" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Execute for each chunk one of the following phasing algorithms (we use an overlap of 5 Mb). For example, chr20:1-20000000 and reference population EUR:</li>
+<li>For each chunk, execute one of the following phasing algorithms (using an overlap of 5 Mb). For example, for chr20:1-20,000,000 and reference population EUR:</li>
 </ul>
 <p><strong>Eagle2</strong>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./eagle<span class="w"> </span>--vcfRef<span class="w"> </span>HRC.r1-1.GRCh37.chr20.shapeit3.mac5.aa.genotypes.bcf
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>--vcfTarget<span class="w"> </span>chunk_20_0000000001_0020000000.vcf.gz<span class="w">  </span>--geneticMapFile<span class="w"> </span>genetic_map_chr20_combined_b37.txt
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>--outPrefix<span class="w"> </span>chunk_20_0000000001_0020000000.phased<span class="w"> </span>--bpStart<span class="w"> </span><span class="m">1</span><span class="w"> </span>--bpEnd<span class="w"> </span><span class="m">25000000</span><span class="w"> </span>--allowRefAltSwap
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>--vcfOutFormat<span class="w"> </span>z
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./eagle<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">   </span>--vcfRef<span class="w"> </span>HRC.r1-1.GRCh37.chr20.shapeit3.mac5.aa.genotypes.bcf<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">   </span>--vcfTarget<span class="w"> </span>chunk_20_0000000001_0020000000.vcf.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">   </span>--geneticMapFile<span class="w"> </span>genetic_map_chr20_combined_b37.txt<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">   </span>--outPrefix<span class="w"> </span>chunk_20_0000000001_0020000000.phased<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">   </span>--chrom<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">   </span>--bpStart<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">   </span>--bpEnd<span class="w"> </span><span class="m">25000000</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">   </span>--allowRefAltSwap<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">   </span>--vcfOutFormat<span class="w"> </span>z<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">   </span>--keepMissingPloidyX<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">   </span>--numThreads<span class="w"> </span><span class="si">${</span><span class="nv">task</span><span class="p">.cpus</span><span class="si">}</span><span class="w"> </span>
 </code></pre></div></p>
-<p><strong>Please note:</strong> Target-only sites for unphased data are not included in the final output.</p>
+<div class="admonition important">
+<p class="admonition-title">Target-only sites for unphased data are excluded from the final output.</p>
+</div>
 <h2 id="imputation">Imputation<a class="headerlink" href="#imputation" title="Permanent link">&para;</a></h2>
-<h3 id="_1"><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Execute for each chunk minimac in order to impute the phased data (we use a window of 500 kb):</li>
+<li>For each chunk, execute Minimac to impute the phased data (using a window of 500 kb):</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./Minimac4<span class="w"> </span>--refHaps<span class="w"> </span>HRC.r1-1.GRCh37.chr1.shapeit3.mac5.aa.genotypes.m3vcf.gz
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>--haps<span class="w"> </span>chunk_1_0000000001_0020000000.phased.vcf<span class="w"> </span>--start<span class="w"> </span><span class="m">1</span><span class="w"> </span>--end<span class="w"> </span><span class="m">20000000</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>--window<span class="w"> </span><span class="m">500000</span><span class="w"> </span>--prefix<span class="w"> </span>chunk_1_0000000001_0020000000<span class="w"> </span>--cpus<span class="w"> </span><span class="m">1</span><span class="w"> </span>--chr<span class="w"> </span><span class="m">20</span><span class="w"> </span>--noPhoneHome
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>--format<span class="w"> </span>GT,DS,GP<span class="w"> </span>--allTypedSites<span class="w"> </span>--meta<span class="w"> </span>--minRatio<span class="w"> </span><span class="m">0</span>.00001
-</code></pre></div>
-If a map file is available (currently TOPMed only), the following cmd is executed:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./Minimac4<span class="w"> </span>--refHaps<span class="w"> </span>HRC.r1-1.GRCh38.chr1.shapeit3.mac5.aa.genotypes.m3vcf.gz
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>--haps<span class="w"> </span>chunk_1_0000000001_0020000000.phased.vcf<span class="w"> </span>--start<span class="w"> </span><span class="m">1</span><span class="w"> </span>--end<span class="w"> </span><span class="m">20000000</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>--window<span class="w"> </span><span class="m">500000</span><span class="w"> </span>--prefix<span class="w"> </span>chunk_1_0000000001_0020000000<span class="w"> </span>--cpus<span class="w"> </span><span class="m">1</span><span class="w"> </span>--chr<span class="w"> </span><span class="m">20</span><span class="w"> </span>--noPhoneHome
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>--format<span class="w"> </span>GT,DS,GP<span class="w"> </span>--allTypedSites<span class="w"> </span>--meta<span class="w"> </span>--minRatio<span class="w"> </span><span class="m">0</span>.00001<span class="w"> </span>--referenceEstimates<span class="w"> </span>--map<span class="w"> </span>B38_MAP_FILE.map
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">    </span>./Minimac4<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">        </span>--region<span class="w"> </span><span class="m">20</span>:1-20000000<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span>--overlap<span class="w"> </span><span class="m">500000</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span>--output<span class="w"> </span><span class="si">${</span><span class="nv">chunkfile_name</span><span class="si">}</span>.dose.vcf.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span>--output-format<span class="w"> </span>vcf.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span>--format<span class="w"> </span>GT,DS,GP<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span>--min-ratio<span class="w"> </span><span class="nv">$minimac_min_ratio</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span>--all-typed-sites<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span>--meta<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span>--min-recom<span class="w"> </span><span class="m">0</span>.00001<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span>--min-r2<span class="w"> </span><span class="m">0</span>.8<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span>--sites<span class="w"> </span>out.info.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span>--empirical-output<span class="w"> </span>out.empiricalDose.vcf.gz<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span>--threads<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span>--decay<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span>HRC.r1-1.GRCh38.chr1.shapeit3.mac5.aa.genotypes.msav<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">        </span>chunk_1_0000000001_0020000000.phased.vcf<span class="w"> </span>
 </code></pre></div>
 <h2 id="hla-imputation-pipeline">HLA Imputation Pipeline<a class="headerlink" href="#hla-imputation-pipeline" title="Permanent link">&para;</a></h2>
 <p>In addition to intergenic SNPs, HLA imputation outputs five different types of markers: (1) binary marker for classical HLA alleles; (2) binary marker for the presence/absence of a specific amino acid residue; (3) HLA intragenic SNPs, and (4) binary markers for insertion/deletions, as described in the typical output below. The goal is to minimize prior assumption on which types of variations will be causal and test all types of variations simultaneously in an unbiased fashion. However, the users are always free to restrict analyses to specific marker subsets.</p>
@@ -1075,16 +1082,16 @@ We note that our current implementation of the reference panel is limited to the
 <p>For more information about HLA imputation and help, please visit <a href="https://github.com/immunogenomics/HLA-TAPAS">https://github.com/immunogenomics/HLA-TAPAS</a>.</p>
 <h2 id="compression-and-encryption">Compression and Encryption<a class="headerlink" href="#compression-and-encryption" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Merge all chunks of one chromosome into one single vcf.gz</li>
-<li>Encrypt data with one-time password</li>
+<li>Merge all chunks of a chromosome into one single VCF file (.vcf.gz).</li>
+<li>Encrypt the data with a one-time password</li>
 </ul>
 <h2 id="chromosome-x-pipeline">Chromosome X Pipeline<a class="headerlink" href="#chromosome-x-pipeline" title="Permanent link">&para;</a></h2>
-<p>Additionally to the standard QC, the following per-sample checks are executed for chrX:</p>
+<p>In addition to the standard QC, the following per-sample checks are performed for chrX:</p>
 <ul>
-<li>Ploidy Check: Verifies if all variants in the nonPAR region are either haploid or diploid.</li>
-<li>Mixed Genotypes Check: Verifies if the amount of mixed genotypes (e.g. 1/.) is &lt; 10 %.</li>
+<li>Ploidy Check: Verifies if all variants in the non-PAR region are either haploid or diploid.</li>
+<li>Mixed Genotypes Check: Verifies if the proportion of mixed genotypes (e.g., 1/.) is &lt; 10%.</li>
 </ul>
-<p>For phasing and imputation, chrX is split into three independent chunks (PAR1, nonPAR, PAR2). These splits are then automatically merged by Michigan Imputation Server and are returned as one complete chromosome X file. Only Eagle is supported.</p>
+<p>For phasing and imputation, chrX is divided into three independent chunks (PAR1, non-PAR, PAR2). These chunks are then automatically merged by the Michigan Imputation Server 2 and returned as a single complete chromosome X file. </p>
 
 
 

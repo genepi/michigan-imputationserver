@@ -452,6 +452,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../qc-allele-swaps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes in Allele Swap Handling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         
   
@@ -587,9 +608,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#can-i-set-up-michigan-imputation-server-locally" class="md-nav__link">
+  <a href="#can-i-set-up-michigan-imputation-server-2-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Can I set up Michigan Imputation Server locally?
+      Can I set up Michigan Imputation Server 2 locally?
     </span>
   </a>
   
@@ -925,9 +946,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#can-i-set-up-michigan-imputation-server-locally" class="md-nav__link">
+  <a href="#can-i-set-up-michigan-imputation-server-2-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Can I set up Michigan Imputation Server locally?
+      Can I set up Michigan Imputation Server 2 locally?
     </span>
   </a>
   
@@ -962,19 +983,19 @@
 
 <h1 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
 <h2 id="i-did-not-receive-a-password-for-my-imputation-job">I did not receive a password for my imputation job<a class="headerlink" href="#i-did-not-receive-a-password-for-my-imputation-job" title="Permanent link">&para;</a></h2>
-<p>Michigan Imputation Server creates a random password for each imputation job. This password is not stored on server-side at any time. If you didn't receive a password, please check your Mail SPAM folder. Please note that we are not able to re-send you the password.  </p>
+<p>Michigan Imputation Server 2 generates a random password for each imputation job. This password is not stored on the server at any time. If you did not receive a password, please check your email’s SPAM folder. Please note that we are unable to re-send the password.</p>
 <h2 id="unzip-command-is-not-working">Unzip command is not working<a class="headerlink" href="#unzip-command-is-not-working" title="Permanent link">&para;</a></h2>
-<p>Please check the following points: (1) When selecting AES256 encryption, please use 7z to unzip your files (Debian: <code>sudo apt-get install p7zip-full</code>). For our default encryption all common programs should work. (2) If your password includes special characters (e.g. \), please put single or double quotes around the password when extracting it from the command line (e.g. <code>7z x -p"PASSWORD" chr_22.zip</code>).</p>
+<p>Please check the following points: (1) When selecting AES256 encryption, use 7z to unzip your files (Debian: <code>sudo apt-get install p7zip-full</code>). For our default encryption, all common programs should work. (2) If your password includes special characters (e.g., \), enclose the password in single or double quotes when extracting it from the command line (e.g., <code>7z x -p"PASSWORD" chr_22.zip</code>).</p>
 <h2 id="extending-expiration-date-or-reset-download-counter">Extending expiration date or reset download counter<a class="headerlink" href="#extending-expiration-date-or-reset-download-counter" title="Permanent link">&para;</a></h2>
-<p>Your data is available for 7 days. In case you need an extension, please let <a href="/contact">us</a> know.</p>
+<p>Your data is available for 7 days. If you need an extension, please let <a href="/contact">us</a> know.</p>
 <h2 id="how-can-i-improve-the-download-speed">How can I improve the download speed?<a class="headerlink" href="#how-can-i-improve-the-download-speed" title="Permanent link">&para;</a></h2>
-<p><a href="https://aria2.github.io/">aria2</a> tries to utilize your maximum download bandwidth. Please keep in mind to raise the k parameter significantly (-k, --min-split-size=SIZE). You will otherwise hit the Michigan Imputation Server download limit for each file (thanks to Anthony Marcketta for point this out).</p>
+<p><a href="https://aria2.github.io/">aria2</a> attempts to utilize your maximum download bandwidth. Please remember to increase the -k parameter significantly (<code>--min-split-size=SIZE</code>). Otherwise, you may hit the Michigan Imputation Server 2 download limit for each file (thanks to Anthony Marcketta for pointing this out).</p>
 <h2 id="can-i-download-all-results-at-once">Can I download all results at once?<a class="headerlink" href="#can-i-download-all-results-at-once" title="Permanent link">&para;</a></h2>
-<p>We provide wget command for all results. Please open the results tab. The last column in each row includes direct links to all files.</p>
-<h2 id="can-i-set-up-michigan-imputation-server-locally">Can I set up Michigan Imputation Server locally?<a class="headerlink" href="#can-i-set-up-michigan-imputation-server-locally" title="Permanent link">&para;</a></h2>
-<p>We are providing a single-node Docker image that can be used to impute from Hapmap2 and 1000G Phase3 locally. Click <a href="/docker">here</a> to give it a try. For usage in production, we highly recommend setting up a Hadoop cluster.</p>
+<p>We provide wget commands for all results. Please open the Results tab. The last column in each row contains direct links to all files.</p>
+<h2 id="can-i-set-up-michigan-imputation-server-2-locally">Can I set up Michigan Imputation Server 2 locally?<a class="headerlink" href="#can-i-set-up-michigan-imputation-server-2-locally" title="Permanent link">&para;</a></h2>
+<p>The workflow is based on Nextflow and can be downloaded from <a href="https://github.com/genepi/imputationserver2">here</a> </p>
 <h2 id="your-web-service-looks-great-can-i-set-up-my-own-web-service-as-well">Your web service looks great. Can I set up my own web service as well?<a class="headerlink" href="#your-web-service-looks-great-can-i-set-up-my-own-web-service-as-well" title="Permanent link">&para;</a></h2>
-<p>All web service functionality is provided by <a href="http://www.cloudgene.io/">Cloudgene</a>. Please contact us, in case you want to set up your own service.</p>
+<p>All web service functionality is provided by <a href="http://www.cloudgene.io/">Cloudgene</a>. Please contact us if you wish to set up your own service.</p>
 
 
 

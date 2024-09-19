@@ -452,6 +452,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../qc-allele-swaps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes in Allele Swap Handling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         
   
@@ -975,17 +996,17 @@
 <h1 id="data-security">Data Security<a class="headerlink" href="#data-security" title="Permanent link">&para;</a></h1>
 <p>Since data is transfered to our server located in Michigan, a wide array of security measures are in force:</p>
 <ul>
-<li>The complete interaction with the server is secured with HTTPS.</li>
-<li>Input data is deleted from our servers as soon it is not needed anymore.</li>
-<li>We only store the number of samples and markers analyzed, we don't ever "look" at your data in anyway.</li>
-<li>All results are encrypted with a strong one-time password - thus, only you can read them.</li>
-<li>After imputation is finished, the data uploader has 7 days to use an encrypted connection to get results back.</li>
-<li>The complete source code is available in a <a href="https://github.com/genepi/imputationserver/tree/qc-refactoring">public Github repository</a>.</li>
+<li>All interactions with the server are secured with HTTPS.</li>
+<li>Input data is deleted from our servers as soon as it is no longer needed.</li>
+<li>We only store the number of samples and markers analyzed; we do not access your data in any way.</li>
+<li>All results are encrypted with a strong one-time password, ensuring that only you can access them.</li>
+<li>After imputation is complete, the data uploader has 7 days to retrieve the results using an encrypted connection.</li>
+<li>The complete source code is available in a <a href="https://github.com/genepi/imputationserver2">public Github repository</a>.</li>
 </ul>
 <h2 id="who-has-access">Who has access?<a class="headerlink" href="#who-has-access" title="Permanent link">&para;</a></h2>
-<p>To upload and download data, users must register with a unique e-mail address and strong password. Each user can only download imputation results for samples that they have themselves uploaded; no other imputation server users will be able to access your data.</p>
+<p>To upload and download genotype data, users must register with a unique email address and a strong password. Each user can only download imputation results for samples they have uploaded themselves; other users of the Imputation Server will not have access to your data.</p>
 <h2 id="cookies">Cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h2>
-<p>We value your privacy and are committed to transparency regarding the use of cookies on our website. Below, we outline our cookie policy to provide you with clarity and assurance.</p>
+<p>We value your privacy and are committed to transparency regarding the use of cookies on our website. Below, we outline our cookie policy to provide clarity and assurance.</p>
 <h3 id="what-are-cookies">What are cookies?<a class="headerlink" href="#what-are-cookies" title="Permanent link">&para;</a></h3>
 <p>Cookies are small text files that are placed on your device when you visit a website. They serve various purposes, including enhancing user experience, facilitating website functionality, and analyzing website traffic.</p>
 <h3 id="how-do-we-use-cookies">How do we use cookies?<a class="headerlink" href="#how-do-we-use-cookies" title="Permanent link">&para;</a></h3>
@@ -995,14 +1016,14 @@
 <h2 id="what-security-or-firewalls-protect-access">What security or firewalls protect access?<a class="headerlink" href="#what-security-or-firewalls-protect-access" title="Permanent link">&para;</a></h2>
 <p>A wide array of security measures are in force on the imputation servers:</p>
 <ul>
-<li>SSH login to the servers is restricted to only systems administrators.</li>
-<li>Direct root login via SSH is not allowed from the public Internet.</li>
-<li>The public-facing side of the servers sits behind the School of Public Health's Checkpoint virtual firewall instance where a default-deny policy is used on inbound traffic; only explicitly allowed TCP ports are passed.</li>
-<li>The School of Public Health also makes use of NIDS technologies such as Snort and Peakflow on its network links for traffic analysis and threat detection.</li>
-<li>On imputation server itself, updates are run regularly by systems administrators who follow several zero-day computer security announcement lists; the OSSEC HIDS is used for log analysis and anomaly detection; and Denyhosts is used to thwart brute-force SSH login attacks.</li>
+<li>SSH access is restricted to system administrators only.</li>
+<li>Direct login via SSH is not permitted from the public Internet.</li>
+<li>The public-facing side of the servers is protected by the School of Public Health’s Checkpoint virtual firewall, which uses a default-deny policy for inbound traffic, allowing only explicitly permitted TCP ports.</li>
+<li>The School of Public Health employs NIDS technologies such as Snort and Peakflow for traffic analysis and threat detection on its network links.</li>
+<li>On the imputation server, updates are regularly applied by system administrators who monitor multiple zero-day security advisories. OSSEC HIDS is used for log analysis and anomaly detection, while Denyhosts is employed to prevent brute-force SSH login attacks.</li>
 </ul>
 <h2 id="what-encryption-of-the-data-is-used-while-the-data-are-present">What encryption of the data is used while the data are present?<a class="headerlink" href="#what-encryption-of-the-data-is-used-while-the-data-are-present" title="Permanent link">&para;</a></h2>
-<p>Imputation results are encrypted with a one-time password generated by the system. The password consists of lower characters, upper characters, special characters and numbers with max. 3 duplicates.</p>
+<p>Imputation results are encrypted with a one-time password generated by the system. The password includes lowercase and uppercase letters, special characters, and numbers, with a maximum of three duplicate characters.</p>
 
 
 

@@ -9,21 +9,25 @@
       
       
       
+        <link rel="prev" href="../prepare-your-data/">
       
       
-      <link rel="icon" href="../../../images/favicon.svg">
+        <link rel="next" href="../pipeline/">
+      
+      
+      <link rel="icon" href="../images/favicon.svg">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.35">
     
     
       
-        <title>Session2 - Michigan Imputation Server 2</title>
+        <title>Changes in Allele Swap Handling - Michigan Imputation Server 2</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.35f28582.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -42,9 +46,9 @@
       
     
     
-      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -68,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome" class="md-skip">
+        <a href="#changes-in-allele-swaps-handling-in-imputation-server-20" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +86,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Michigan Imputation Server 2" class="md-header__button md-logo" aria-label="Michigan Imputation Server 2" data-md-component="logo">
+    <a href=".." title="Michigan Imputation Server 2" class="md-header__button md-logo" aria-label="Michigan Imputation Server 2" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -102,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Session2
+              Changes in Allele Swap Handling
             
           </span>
         </div>
@@ -190,7 +194,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../.." class="md-tabs__link">
+      <a href=".." class="md-tabs__link">
         
   
     
@@ -205,11 +209,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../getting-started/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../getting-started/" class="md-tabs__link">
           
   
   Genotype Imputation
@@ -227,7 +233,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../pgs/getting-started/" class="md-tabs__link">
+        <a href="../pgs/getting-started/" class="md-tabs__link">
           
   
   Polygenic Score Calculation
@@ -243,7 +249,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../reference-panels/" class="md-tabs__link">
+      <a href="../reference-panels/" class="md-tabs__link">
         
   
     
@@ -260,7 +266,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../resources/" class="md-tabs__link">
+      <a href="../resources/" class="md-tabs__link">
         
   
     
@@ -277,7 +283,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../contact/" class="md-tabs__link">
+      <a href="../contact/" class="md-tabs__link">
         
   
     
@@ -311,7 +317,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Michigan Imputation Server 2" class="md-nav__button md-logo" aria-label="Michigan Imputation Server 2" data-md-component="logo">
+    <a href=".." title="Michigan Imputation Server 2" class="md-nav__button md-logo" aria-label="Michigan Imputation Server 2" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -341,7 +347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -358,23 +364,28 @@
       
   
   
+    
   
   
+  
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -385,7 +396,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Genotype Imputation
@@ -399,7 +410,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -420,7 +431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../prepare-your-data/" class="md-nav__link">
+      <a href="../prepare-your-data/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -438,10 +449,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../qc-allele-swaps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Changes in Allele Swap Handling
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -450,6 +481,64 @@
   
 
       </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview of Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-on-data-submissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact on Data Submissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -462,7 +551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pipeline/" class="md-nav__link">
+      <a href="../pipeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +572,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data-sensitivity/" class="md-nav__link">
+      <a href="../data-sensitivity/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +593,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../faq/" class="md-nav__link">
+      <a href="../faq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -570,7 +659,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/getting-started/" class="md-nav__link">
+      <a href="../pgs/getting-started/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -591,7 +680,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/report/" class="md-nav__link">
+      <a href="../pgs/report/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -612,7 +701,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/output-files/" class="md-nav__link">
+      <a href="../pgs/output-files/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -633,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/scores/" class="md-nav__link">
+      <a href="../pgs/scores/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,7 +743,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/pipeline/" class="md-nav__link">
+      <a href="../pgs/pipeline/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -675,7 +764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../pgs/faq/" class="md-nav__link">
+      <a href="../pgs/faq/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -703,7 +792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../reference-panels/" class="md-nav__link">
+      <a href="../reference-panels/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -723,7 +812,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../resources/" class="md-nav__link">
+      <a href="../resources/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -743,7 +832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../contact/" class="md-nav__link">
+      <a href="../contact/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -785,9 +874,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#download-slides" class="md-nav__link">
+  <a href="#overview-of-changes" class="md-nav__link">
     <span class="md-ellipsis">
-      Download Slides
+      Overview of Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Changes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-on-data-submissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Impact on Data Submissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommendations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommendations
     </span>
   </a>
   
@@ -811,37 +927,28 @@
   
 
 
-<p><strong>Workshop ASHG2022 &gt; Session 2: Run a job, Data Preparation and Data Download</strong></p>
-<h1 id="welcome">Welcome<a class="headerlink" href="#welcome" title="Permanent link">&para;</a></h1>
-<p>Welcome to Session 2! In this session you will learn how to submit a job on Michigan Imputation Server (MIS) and how to prepare your input data that they are passing the QC step.</p>
-<h2 id="download-slides">Download Slides<a class="headerlink" href="#download-slides" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/genepi/imputationserver-ashg22/raw/master/slides/Section2_MIS_Workshop_22.pdf">Download (pdf)</a></p>
-<h1 id="tutorial">Tutorial<a class="headerlink" href="#tutorial" title="Permanent link">&para;</a></h1>
-<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
-<p>As a quick start, the following video includes all required steps to submit and monitor a job using the graphical web interface.</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BLTPHWuMF0Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<h2 id="run-a-job-on-your-own">Run a job on your own<a class="headerlink" href="#run-a-job-on-your-own" title="Permanent link">&para;</a></h2>
-<p>After you <a href="https://imputationserver.sph.umich.edu/start.html#!pages/register">registered</a> successfully, the following URL will bring you directly to the job submission page:
-<a href="https://imputationserver.sph.umich.edu/index.html#!run/minimac4">https://imputationserver.sph.umich.edu/index.html#!run/minimac4</a></p>
-<h2 id="submission-page-select-parameters">Submission Page - Select parameters<a class="headerlink" href="#submission-page-select-parameters" title="Permanent link">&para;</a></h2>
-<p>The UI includes several parameters which need to be specified. Our <a href="https://imputationserver.readthedocs.io/en/latest/getting-started/">Getting Started guide</a> describes all required parameters to do so.</p>
-<h2 id="submission-page-upload-data">Submission Page - Upload data<a class="headerlink" href="#submission-page-upload-data" title="Permanent link">&para;</a></h2>
-<p>We are providing two data datasets that can be downloaded from below. In case the unphased dataset is selected, an additional phasing step using Eagle is automatically performed. For this demo, we recommend selecting the <strong>HapMap 2 panel</strong> (Input parameter 'Reference panel') to get your results as quick as possible. Please also have a look at our <a href="https://imputationserver.readthedocs.io/en/latest/reference-panels/">supported reference panels</a> when using MIS in a production setup.</p>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-</div>
-<p>You can also copy/paste the URL from below and change "File Upload" to "URLs (HTTP)" load the data from a remote server (GitHub in this case).</p>
+<h1 id="changes-in-allele-swaps-handling-in-imputation-server-20">Changes in Allele Swaps Handling in Imputation Server 2.0<a class="headerlink" href="#changes-in-allele-swaps-handling-in-imputation-server-20" title="Permanent link">&para;</a></h1>
+<p>With the update to the latest Minimac4 version, we have modified the default handling of allele swaps in Michigan Imputation Server 2. </p>
+<h2 id="overview-of-changes">Overview of Changes<a class="headerlink" href="#overview-of-changes" title="Permanent link">&para;</a></h2>
+<p>In previous versions of the server, swapped reference and alternate alleles were automatically corrected, with only ambiguous SNPs being filtered out. To improve genotype quality and avoid errors from incorrectly genotyped variants, the handling of allele swaps has now been updated.</p>
+<h2 id="key-changes">Key Changes<a class="headerlink" href="#key-changes" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/genepi/imputationserver-ashg22/raw/master/files/chr20.R50.merged.1.330k.recode.small.vcf.gz">Phased dataset chr20 hg19</a></li>
-<li><a href="https://github.com/genepi/imputationserver-ashg22/raw/master/files/chr20.R50.merged.1.330k.recode.unphased.small.vcf.gz">Unphased dataset chr20 hg19</a></li>
+<li><strong>Previous Behavior</strong>: Allele swaps were automatically corrected, with only ambiguous SNPs being filtered out.</li>
+<li><strong>New Behavior</strong>: With the update, the server now enforces stricter quality control. The system allows up to 100 allele swaps during processing. If more than 100 allele swaps are detected, the quality control process will fail, stopping the imputation process to prevent poor genotype quality.</li>
 </ul>
-<h2 id="submission-page-submit">Submission Page - Submit<a class="headerlink" href="#submission-page-submit" title="Permanent link">&para;</a></h2>
-<p>After all parameters have been selected and you click 'submit', the job will be added to our Input Validation and QC queue. Please have a look at our <a href="https://imputationserver.readthedocs.io/en/latest/prepare-your-data">Data Preparation Guide</a> to learn how to prepare your dataset using a pre-imputation tool.</p>
-<h2 id="monitor-jobs-download-data">Monitor Jobs, Download Data<a class="headerlink" href="#monitor-jobs-download-data" title="Permanent link">&para;</a></h2>
-<p>If the job passes the QC step, it will be added to our long-time queue. As soon as your job is finished, you will receive an email with the password to download and encrypt your data. Also checkout our <a href="https://imputationserver.readthedocs.io/en/latest/pipeline/">Pipeline Overview Guide</a> to learn more about the different internal parameters. The complete source code can also be found on <a href="https://imputationserver.sph.umich.edu">GitHub</a>.</p>
-<h1 id="contact">Contact<a class="headerlink" href="#contact" title="Permanent link">&para;</a></h1>
-<p>If you have any questions please write <a href="mailto:sebastian.schoenherr@i-med.ac.at">me an email</a> or contact me on <a href="https://twitter.com/seppinho">Twitter</a>.</p>
+<h2 id="impact-on-data-submissions">Impact on Data Submissions<a class="headerlink" href="#impact-on-data-submissions" title="Permanent link">&para;</a></h2>
+<p>This update may cause failures in submissions that were previously accepted but now exceed the 100-allele swap threshold.</p>
+<h2 id="recommendations">Recommendations<a class="headerlink" href="#recommendations" title="Permanent link">&para;</a></h2>
+<p>To avoid imputation quality issues and ensure your data meets the new allele swaps threshold:</p>
+<ul>
+<li>
+<p>We recommend using tools such as Will Rayner’s tool to check for and correct allele switches in your dataset.</p>
+</li>
+<li>
+<p>This will ensure that issues such as <strong>strand or allele flips</strong> are resolved before submission, helping your data meet the new quality standards.</p>
+</li>
+</ul>
+<p>Please follow these steps to verify your data before submitting it to Imputation Server 2.</p>
 
 
 
@@ -890,10 +997,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.tooltips", "navigation.tabs", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.tooltips", "navigation.tabs", "search.highlight", "search.share", "search.suggest", "toc.follow", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      <script src="../assets/javascripts/bundle.56dfad97.min.js"></script>
       
     
   </body>

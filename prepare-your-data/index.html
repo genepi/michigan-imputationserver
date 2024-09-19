@@ -12,7 +12,7 @@
         <link rel="prev" href="../getting-started/">
       
       
-        <link rel="next" href="../pipeline/">
+        <link rel="next" href="../qc-allele-swaps/">
       
       
       <link rel="icon" href="../images/favicon.svg">
@@ -587,6 +587,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../qc-allele-swaps/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Changes in Allele Swap Handling
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
         
   
@@ -1021,19 +1042,19 @@
 
 
 <h1 id="data-preparation">Data preparation<a class="headerlink" href="#data-preparation" title="Permanent link">&para;</a></h1>
-<p>Michigan Imputation Server accepts VCF files compressed with <a href="http://samtools.sourceforge.net/tabix.shtml">bgzip</a>. Please make sure the following requirements are met:</p>
+<p>Michigan Imputation Server 2 accepts VCF files compressed with <a href="http://samtools.sourceforge.net/tabix.shtml">bgzip</a>. Please ensure that the following requirements are met:</p>
 <ul>
 <li>Create a separate vcf.gz file for each chromosome.</li>
-<li>Variations must be sorted by genomic position.</li>
+<li>Variants must be sorted by genomic position.</li>
 <li>GRCh37 or GRCh38 coordinates are required.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Several *.vcf.gz files can be uploaded at once.</p>
+<p>Multiple *.vcf.gz files can be uploaded at once.</p>
 </div>
 <h2 id="quality-control-for-hrc-1000g-and-caapa-imputation">Quality Control for HRC, 1000G and CAAPA imputation<a class="headerlink" href="#quality-control-for-hrc-1000g-and-caapa-imputation" title="Permanent link">&para;</a></h2>
-<p>Will Rayner provides a great toolbox to prepare data: <a href="http://www.well.ox.ac.uk/~wrayner/tools/">HRC or 1000G Pre-imputation Checks</a>.</p>
-<p>The main steps for HRC are:</p>
+<p>Will Rayner provides an excellent toolbox for preparing data: <a href="http://www.well.ox.ac.uk/~wrayner/tools/">HRC or 1000G Pre-imputation Checks</a>.</p>
+<p>The main steps for using HRC are:</p>
 <h3 id="download-tool-and-sites">Download tool and sites<a class="headerlink" href="#download-tool-and-sites" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wget<span class="w"> </span>http://www.well.ox.ac.uk/~wrayner/tools/HRC-1000G-check-bim-v4.2.7.zip
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>wget<span class="w"> </span>ftp://ngs.sanger.ac.uk/production/hrc/HRC.r1-1/HRC.r1-1.GRCh37.wgs.mac5.sites.tab.gz
@@ -1059,11 +1080,11 @@
  <a href="https://samtools.github.io/bcftools">BCFtools</a> or <a href="http://genome.sph.umich.edu/wiki/VcfCooker">VcfCooker</a>.  </p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>plink<span class="w"> </span>--ped<span class="w"> </span>study_chr1.ped<span class="w"> </span>--map<span class="w"> </span>study_chr1.map<span class="w"> </span>--recode<span class="w"> </span>vcf<span class="w"> </span>--out<span class="w"> </span>study_chr1
 </code></pre></div>
-<p>Create a sorted vcf.gz file using <a href="https://samtools.github.io/bcftools">BCFtools</a>:</p>
+<p>Create a sorted vcf.gz file using <a href="https://samtools.github.io/bcftools">bcftools</a>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>bcftools<span class="w"> </span>sort<span class="w"> </span>study_chr1.vcf<span class="w"> </span>-Oz<span class="w"> </span>-o<span class="w"> </span>study_chr1.vcf.gz
 </code></pre></div>
 <h3 id="checkvcf">CheckVCF<a class="headerlink" href="#checkvcf" title="Permanent link">&para;</a></h3>
-<p>Use <a href="https://github.com/zhanxw/checkVCF">checkVCF</a> to ensure that the VCF files are valid. checkVCF proposes "Action Items" (e.g. upload to sftp server), which can be ignored. Only the validity should be checked with this command.</p>
+<p>Use <a href="https://github.com/zhanxw/checkVCF">checkVCF</a> to ensure that the VCF files are valid. CheckVCF provides “Action Items” (e.g., uploading to an SFTP server) that can be ignored. Focus solely on verifying the validity of the files with this tool.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>checkVCF.py<span class="w"> </span>-r<span class="w"> </span>human_g1k_v37.fasta<span class="w"> </span>-o<span class="w"> </span>out<span class="w"> </span>mystudy_chr1.vcf.gz
 </code></pre></div>
 
