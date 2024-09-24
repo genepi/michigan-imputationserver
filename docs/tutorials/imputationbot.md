@@ -9,10 +9,12 @@ You will need the following things properly installed on your computer.
 
 ## Download and Install
 
-Download and install the latest version from our download page using the following commands:
+**Michigan Imputation Server requires version 2.x.x or higher to function without errors. Please ensure that you update and reinstall Imputation Bot if you are using version 1.0.0 or lower.**
+
+Download and install the latest version from our download page using the following commands.
 
 ```
-curl -sL imputationbot.now.sh | bash
+curl -sL imputationbot.now.sh/v2 | bash
 ```
 
 
@@ -23,7 +25,6 @@ imputationbot version
 ```
 
 The documentation is available at [http://imputationbot.readthedocs.io](http://imputationbot.readthedocs.io).
-
 
 ## Get your API Token
 
@@ -52,7 +53,7 @@ imputationbot add-instance
 ```
 
 ```
-Imputation Bot 0.8.3 🤖
+Imputation Bot 2.0.0 🤖
 https://imputationserver.sph.umich.edu
 (c) 2019-2020 Lukas Forer, Sebastian Schoenherr and Christian Fuchsberger
 Built by lukas on 2020-09-01T11:31:10Z
