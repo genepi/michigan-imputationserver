@@ -14,7 +14,7 @@ For security reasons, Api Tokens are valid for 30 days. You can check the status
 ## Job Submission for Whole Genome Imputation
 The API allows to submit imputation jobs and to set several parameters. For HLA imputation, please see below. 
 
-### POST /jobs/submit/minimac4
+### POST /jobs/submit/imputationserver2
 
 The following parameters can be set:
 
