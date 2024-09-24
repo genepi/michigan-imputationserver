@@ -59,7 +59,7 @@ Command:
 ```sh
 TOKEN="YOUR-API-TOKEN";
 
-curl https://imputationserver.sph.umich.edu/api/v2/jobs/submit/minimac4 \
+curl https://imputationserver.sph.umich.edu/api/v2/jobs/submit/imputationserver2 \
   -H "X-Auth-Token: $TOKEN" \
   -F "files=@/path-to/file.vcf.gz" \
   -F "refpanel=1000g-phase-3-v5" \
@@ -85,7 +85,7 @@ Command:
 ```sh
 TOKEN="YOUR-API-TOKEN";
 
-curl https://imputationserver.sph.umich.edu/api/v2/jobs/submit/minimac4 \
+curl https://imputationserver.sph.umich.edu/api/v2/jobs/submit/imputationserver2 \
   -H "X-Auth-Token: $TOKEN" \
   -F "files=@/path-to/file1.vcf.gz" \
   -F "files=@/path-to/file2.vcf.gz" \
@@ -113,7 +113,7 @@ Command:
 ```sh
 TOKEN="YOUR-API-TOKEN";
 
-curl  https://imputationserver.sph.umich.edu/api/v2/jobs/submit/minimac4 \
+curl  https://imputationserver.sph.umich.edu/api/v2/jobs/submit/imputationserver2 \
   -H "X-Auth-Token: $TOKEN" \
   -F "files=https://imputationserver.sph.umich.edu/static/downloads/hapmap300.chr1.recode.vcf.gz" \
   -F "files-source=http" \
@@ -155,10 +155,10 @@ data = {
 # submit new job
 vcf = '/path/to/genome.vcf.gz';
 files = {'files' : open(vcf, 'rb')}
-r = requests.post(url + "/jobs/submit/minimac4", files=files, data=data, headers=headers)
+r = requests.post(url + "/jobs/submit/imputationserver2", files=files, data=data, headers=headers)
 if r.status_code != 200:
   print(r.json()['message'])
-  raise Exception('POST /jobs/submit/minimac4 {}'.format(r.status_code))
+  raise Exception('POST /jobs/submit/imputationserver2 {}'.format(r.status_code))
 
 # print response and job id
 print(r.json()['message'])
@@ -186,10 +186,10 @@ data = {
 vcf = '/path/to/file1.vcf.gz';
 vcf1 = '/path/to/file2.vcf.gz';
 files = [('files', open(vcf, 'rb')), ('files', open(vcf1, 'rb'))]
-r = requests.post(url + "/jobs/submit/minimac4", files=files, data=data, headers=headers)
+r = requests.post(url + "/jobs/submit/imputationserver2", files=files, data=data, headers=headers)
 if r.status_code != 200:
   print(r.json()['message'])
-  raise Exception('POST /jobs/submit/minimac4 {}'.format(r.status_code))
+  raise Exception('POST /jobs/submit/imputationserver2 {}'.format(r.status_code))
 
 # print message
 print(r.json()['message'])
