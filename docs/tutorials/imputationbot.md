@@ -32,19 +32,19 @@ Enable API access from your Profile page.
 
 1. Login and click on your **username** and then **profile**:
 
-![Image1](/workshops/ASHG2020/images/token1.png)
+![Image1](../workshops/ASHG2020/images/token1.png)
 
 2. Click on **Create API Token**
 
-![Image1](/workshops/ASHG2020/images/token2.png)
+![Image1](../workshops/ASHG2020/images/token2.png)
 
 3. Copy your API Token and paste it when `imputationbot add-instance` ask for it.
 
-![Image1](/workshops/ASHG2020/images/token3.png)
+![Image1](../workshops/ASHG2020/images/token3.png)
 
 Api Tokens are valid for 30 days. You can check the status in the web interface or with `imputationbot instances`
 
-![Image1](/workshops/ASHG2020/images/token4.png)
+![Image1](../workshops/ASHG2020/images/token4.png)
 
 4. Next, configure imputationbot with the following command:
 
