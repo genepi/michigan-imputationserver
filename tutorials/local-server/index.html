@@ -1046,10 +1046,14 @@
 </div>
 <p>Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.</p>
 <h3 id="step-4-start-your-local-imputation-server">Step 4 - Start your local imputation server<a class="headerlink" href="#step-4-start-your-local-imputation-server" title="Permanent link">&para;</a></h3>
-<p>The local web service can now be started in the background; by default, it runs on port 8082.</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span>./cloudgene<span class="w"> </span>server<span class="w"> </span><span class="p">&amp;</span>
+<p>The local web service can now be started. By default, it runs on port 8082.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span>./cloudgene<span class="w"> </span>server
 </code></pre></div>
 You can now open a local web browser and navigate to http://localhost:8082. This will display the default landing page, which can be customized later.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For server usage, run <code>./cloudgene server &amp;</code> to run it in the background when everything has been set up. </p>
+</div>
 <p><img alt="" src="../../images/tutorials/local-server/cloidgene-fresh-install.png" /></p>
 <h3 id="step-5-login-and-run-your-first-workflow">Step 5 - Login and Run your first workflow<a class="headerlink" href="#step-5-login-and-run-your-first-workflow" title="Permanent link">&para;</a></h3>
 <p>You can now log in using the default credentials (username: <code>admin</code>, password: <code>admin1978</code>). The interface will change slightly, with the <strong>Run</strong> tab becoming available.</p>
@@ -1153,9 +1157,8 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="o">}</span>
 </code></pre></div>
 <h3 id="web-service-settings">Web Service Settings<a class="headerlink" href="#web-service-settings" title="Permanent link">&para;</a></h3>
-<p>As mentioned earlier, the settings.yaml file includes all settings from the web service itself.</p>
-<ol>
-<li>Set up a MySQL database to store all user and job information (by default, an H2 database is used).
+<p>As mentioned earlier, the settings.yaml file includes all settings from the web service itself. We recommend the following adjustments if you plan to scale it up for larger usage:</p>
+<p>1) Set up a MySQL database to store all user and job information (by default, an H2 database is used).
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>database:
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>   database: 
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>   password: 
@@ -1163,17 +1166,14 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>   port: 3306
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>   host: 
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>   user: 
-</code></pre></div></li>
-<li>Configure the workspace for output files.</li>
-</ol>
+</code></pre></div>
+2) Configure the workspace for output files.</p>
 <p>The output folder for job results can be specified. We recommend placing it on a large HDD for better storage capacity.
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>externalWorkspace:
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>   location: /path/to/drive
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>   type: local
 </code></pre></div></p>
-<ol>
-<li>Modiy the default web service configuration</li>
-</ol>
+<p>3) Modiy the default web service configuration</p>
 <p>We recommend setting the following configuration options. For more details on available options, please refer to the documentation <a href="https://www.cloudgene.io/server/configuration/">here</a>.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>threadsQueue: 30
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>uploadLimit: 15000
@@ -1182,9 +1182,7 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>autoRetireInterval: 4
 <a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>maxRunningJobsPerUser: 3
 </code></pre></div>
-<ol>
-<li>Adapt the landing page.</li>
-</ol>
+<p>4) Adapt the landing page.</p>
 <p>To achieve the same look and feel as the Michigan Imputation Server, copy the pages folder to the main directory of your installation.</p>
 <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>Cloudgene 3, in combination with our new Nextflow pipeline, transforms how imputation can be performed in the future. Please contact Lukas Forer and Sebastian Schönherr to learn more about how this can support your use cases!</p>
