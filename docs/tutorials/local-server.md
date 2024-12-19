@@ -59,12 +59,15 @@ In Cloudgene 3, everything is considered an app. This means that both the imputa
 Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.
 
 ### Step 4 - Start your local imputation server
-The local web service can now be started in the background; by default, it runs on port 8082.
+The local web service can now be started. By default, it runs on port 8082.
 
 ```bash
- ./cloudgene server &
+ ./cloudgene server
 ```
 You can now open a local web browser and navigate to http://localhost:8082. This will display the default landing page, which can be customized later.
+
+!!! note
+     For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. 
 
 ![](../images/tutorials/local-server/cloidgene-fresh-install.png)
 
@@ -204,9 +207,9 @@ process {
 }
 ```
 ### Web Service Settings
-As mentioned earlier, the settings.yaml file includes all settings from the web service itself.
+As mentioned earlier, the settings.yaml file includes all settings from the web service itself. We recommend the following adjustments if you plan to scale it up for larger usage:
 
-1. Set up a MySQL database to store all user and job information (by default, an H2 database is used).
+1) Set up a MySQL database to store all user and job information (by default, an H2 database is used).
 ```
 database:
    database: 
@@ -216,7 +219,7 @@ database:
    host: 
    user: 
 ```
-2. Configure the workspace for output files.
+2) Configure the workspace for output files.
 
 The output folder for job results can be specified. We recommend placing it on a large HDD for better storage capacity.
 ```
@@ -225,7 +228,7 @@ externalWorkspace:
    type: local
 ```
 
-3. Modiy the default web service configuration
+3) Modiy the default web service configuration
 
 We recommend setting the following configuration options. For more details on available options, please refer to the documentation [here](https://www.cloudgene.io/server/configuration/).
 
@@ -238,7 +241,7 @@ autoRetireInterval: 4
 maxRunningJobsPerUser: 3
 ```
 
-4. Adapt the landing page.
+4) Adapt the landing page.
 
 To achieve the same look and feel as the Michigan Imputation Server, copy the pages folder to the main directory of your installation.
 
