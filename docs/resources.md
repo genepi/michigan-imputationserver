@@ -31,8 +31,10 @@ The REST APIs provide programmatic ways to submit new jobs and to download data 
 
 ---
 
-### Build your own Imputationserver
+### Build your own imputation server
 All the core is open source. If you have interest to build and host your own Imputationserver, please follow the instrocution of the Imputationserver2 pipeline here. 
+
+[Learn more](tutorials/local-server.md)
 
 ---
 
