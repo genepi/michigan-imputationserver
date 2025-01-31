@@ -23,8 +23,8 @@ The main installation directory contains all the necessary data to run a local i
 ```bash
 mkdir pgscalcserver
 ```
-!!! note
-    In a Slurm setup, make sure this directory is located on a shared drive that is accessible by all nodes.
+>[!TIP]
+> In a Slurm setup, make sure this directory is located on a shared drive that is accessible by all nodes.
 
 
 ### Step 2 - Install Cloudgene
@@ -76,8 +76,8 @@ The local web service can now be started. By default, it runs on port 8082.
 ```
 You can now open a local web browser and navigate to http://localhost:8082. This will display the default landing page, which can be customized later.
 
-!!! note
-     For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. 
+>[!TIP]
+> For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use `nohup`.
 
 ![](../images/tutorials/local-server/cloidgene-fresh-install.png)
 
@@ -109,8 +109,8 @@ Most importantly, check if Docker and Nextflow have been detected. For a local s
 
 ![](../images/tutorials/local-server/admin-server-2.png)
 
-!!! note
-    The status of Singularity is currently not monitored by the instance.
+>[!WARNING]
+> The status of Singularity is currently not monitored by the instance.
 
 ### 2) Set Nextflow profile
 Next, we need to specify the default Nextflow profile for the pipeline. For the pgs-calc server, Docker is already set as the default profile. However, for this tutorial, we will configure it explicitly. Click on Apps in the Admin Panel, then click on the gear icon.
@@ -121,8 +121,8 @@ Now, set the profile value to 'docker' and click **Save Changes**.
 
 ![](../images/tutorials/local-PGS-server/admin-profile-2.png)
 
-!!! note
-    Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), such as Slurm or Singularity profiles. 
+>[!NOTE]
+> Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), such as Slurm or Singularity profiles. 
 
 ### 3) Setting up a mail server
 A mail server is required for user registration. You can configure it in the Admin Panel by navigating to **Settings** -> **Mail**. We recommend using a mail relay. If you set a password, please note that it will be stored in plain text in the ```settings.yaml``` file.
@@ -153,8 +153,8 @@ params.min_samples = 1
 The Michigan Imputation Server operates on a Slurm cluster, which requires additional configuration. This section includes the required adjustments for HPC usage.
 
 
-!!! note
-    Our pipeline provides a Slurm profile, which should be specified instead of Docker or Singularity. If you require a different executor, feel free to submit a pull request. 
+>[!NOTE]
+> Our pipeline provides a Slurm profile, which should be specified instead of Docker or Singularity. If you require a different executor, feel free to submit a pull request. 
 
  
 ### Resume jobs
