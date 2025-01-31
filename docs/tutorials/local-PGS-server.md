@@ -41,17 +41,30 @@ curl -fsSL https://get.cloudgene.io | bash
 
 If the last command successfully returns the currently installed version, everything is set up correctly.
 
-### Step 3 - Install the PGS calc server pipeline and reference panel
+### Step 3 - Install the PGS calc server pipeline,  PGS catalog and reference panel
 
-In Cloudgene 3, everything is considered an app. This means that both the PGS calculation server pipeline and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our [PGS-calc](https://github.com/genepi/imputationserver2) directly from GitHub and the Hapmap2 panel from an HTTP address. 
+In Cloudgene 3, everything is considered an app. This means that both the PGS calculation server pipeline, the PGS catalog and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our [PGS-calc](https://github.com/genepi/imputationserver2) directly from GitHub and the Hapmap2 panel and PGS catalog from an HTTP address.
 
 ```bash
+# PGS pipeline
  ./cloudgene install genepi/imputationserver2/cloudgene.pgs.yaml
+# reference frame
  ./cloudgene install https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-hapmap2.zip
+# PGS catalog
+./cloudgene install https://imputationserver.sph.umich.edu/resources/pgs-catalog/pgs-catalog-small.zip
 ```
-!!! note
-     If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [this address](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
-     You can also download the pipeline or panel first and then specify a local path in the command above. 
+
+>[!NOTE]
+>If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [this address](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
+>Similarly, you can choose [different PGS catalogs](https://imputationserver.sph.umich.edu/resources/pgs-catalog/) too.
+
+>[!TIP]
+>You can also download the pipeline or panel first and then specify a local path in the command above.
+>For example, if you encounter issues installing the PGS workflow, you can downloading the yaml file and install it locally.
+>```bash
+>curl https://raw.githubusercontent.com/genepi/imputationserver2/refs/heads/main/cloudgene.pgs.yaml --output cloudgene.pgs.yaml
+>./cloudgene install ./cloudgene.pgs.yaml
+>```
 
 Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.
 
@@ -78,6 +91,9 @@ By clicking on the **Run** tab, you should see the imputation server workflow, j
 ![](../images/tutorials/local-PGS-server/pgs_calc_run.png)
 
 This provides a basic setup for your local server and should already allow you to run a job on your local instance!
+
+>[!IMPORTANT]
+>Make sure  `docker`, or `singularity`, is running!
 
 ## Tweak your instance (Basics)
 
