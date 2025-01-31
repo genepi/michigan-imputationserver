@@ -23,8 +23,9 @@ The main installation directory contains all the necessary data to run a local i
 ```bash
 mkdir pgscalcserver
 ```
->[!TIP]
-> In a Slurm setup, make sure this directory is located on a shared drive that is accessible by all nodes.
+!!! info
+
+    In a Slurm setup, make sure this directory is located on a shared drive that is accessible by all nodes.
 
 
 ### Step 2 - Install Cloudgene
@@ -54,17 +55,19 @@ In Cloudgene 3, everything is considered an app. This means that both the PGS ca
 ./cloudgene install https://imputationserver.sph.umich.edu/resources/pgs-catalog/pgs-catalog-small.zip
 ```
 
->[!NOTE]
->If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [this address](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
->Similarly, you can choose [different PGS catalogs](https://imputationserver.sph.umich.edu/resources/pgs-catalog/) too.
+!!! note
 
->[!TIP]
->You can also download the pipeline or panel first and then specify a local path in the command above.
->For example, if you encounter issues installing the PGS workflow, you can downloading the yaml file and install it locally.
->```bash
->curl https://raw.githubusercontent.com/genepi/imputationserver2/refs/heads/main/cloudgene.pgs.yaml --output cloudgene.pgs.yaml
->./cloudgene install ./cloudgene.pgs.yaml
->```
+    If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [this address](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
+    Similarly, you can choose [different PGS catalogs](https://imputationserver.sph.umich.edu/resources/pgs-catalog/) too.
+
+!!! info
+    
+    You can also download the pipeline or panel first and then specify a local path in the command above.
+    For example, if you encounter issues installing the PGS workflow, you can downloading the yaml file and install it locally.
+    ```bash
+    curl https://raw.githubusercontent.com/genepi/imputationserver2/refs/heads/main/cloudgene.pgs.yaml --output cloudgene.pgs.yaml
+    ./cloudgene install ./cloudgene.pgs.yaml
+    ```
 
 Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.
 
@@ -76,8 +79,9 @@ The local web service can now be started. By default, it runs on port 8082.
 ```
 You can now open a local web browser and navigate to http://localhost:8082. This will display the default landing page, which can be customized later.
 
->[!TIP]
-> For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use `nohup`.
+!!! tip
+
+    For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use `nohup`.
 
 ![](../images/tutorials/local-server/cloidgene-fresh-install.png)
 
@@ -92,8 +96,9 @@ By clicking on the **Run** tab, you should see the imputation server workflow, j
 
 This provides a basic setup for your local server and should already allow you to run a job on your local instance!
 
->[!IMPORTANT]
->Make sure  `docker`, or `singularity`, is running!
+!!! tip
+    
+    Make sure  `docker`, or `singularity`, is running!
 
 ## Tweak your instance (Basics)
 
@@ -109,8 +114,9 @@ Most importantly, check if Docker and Nextflow have been detected. For a local s
 
 ![](../images/tutorials/local-server/admin-server-2.png)
 
->[!WARNING]
-> The status of Singularity is currently not monitored by the instance.
+!!! warning
+
+    The status of Singularity is currently not monitored by the instance.
 
 ### 2) Set Nextflow profile
 Next, we need to specify the default Nextflow profile for the pipeline. For the pgs-calc server, Docker is already set as the default profile. However, for this tutorial, we will configure it explicitly. Click on Apps in the Admin Panel, then click on the gear icon.
@@ -121,8 +127,9 @@ Now, set the profile value to 'docker' and click **Save Changes**.
 
 ![](../images/tutorials/local-PGS-server/admin-profile-2.png)
 
->[!NOTE]
-> Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), such as Slurm or Singularity profiles. 
+!!! note
+
+    Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), such as Slurm or Singularity profiles. 
 
 ### 3) Setting up a mail server
 A mail server is required for user registration. You can configure it in the Admin Panel by navigating to **Settings** -> **Mail**. We recommend using a mail relay. If you set a password, please note that it will be stored in plain text in the ```settings.yaml``` file.
@@ -153,8 +160,9 @@ params.min_samples = 1
 The Michigan Imputation Server operates on a Slurm cluster, which requires additional configuration. This section includes the required adjustments for HPC usage.
 
 
->[!NOTE]
-> Our pipeline provides a Slurm profile, which should be specified instead of Docker or Singularity. If you require a different executor, feel free to submit a pull request. 
+!!! note
+
+    Our pipeline provides a Slurm profile, which should be specified instead of Docker or Singularity. If you require a different executor, feel free to submit a pull request. 
 
  
 ### Resume jobs
