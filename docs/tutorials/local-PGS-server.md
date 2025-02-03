@@ -169,7 +169,7 @@ process {
     scratch = '/data/nextflow-scratch'
     
     // default queue
-    queue = 'mis-imputation'
+    queue = 'pgs-calc-server'
 
     withLabel: preprocessing {
         queue = 'mis-preprocessing'
@@ -181,23 +181,23 @@ process {
         queue = 'mis-phasing'
     }
 
-    withName: 'EAGLE' {
-    cpus = { 2 }
-    memory = { 24.GB * task.attempt }
+    withName: 'CALCULATE_CHUNKS' {
+    cpus = { 1 }
+    memory = { 12.GB * task.attempt }
     }
   
-    withName: 'BEAGLE' {
+    withName: 'MERGE_CHUNK_SCORES' {
     cpus = { 2 }
-    memory = { 24.GB * task.attempt }
+    memory = { 12.GB * task.attempt }
     }
 
-    withName: 'MINIMAC4' {
+    withName: 'MERGE_CHUNK_INFOS' {
     cpus = { 2 }
-    memory = { 24.GB * task.attempt }
+    memory = { 12.GB * task.attempt }
     }
     
-    withName: 'COMPRESSION_ENCRYPTION_VCF' {
-    cpus = { 4 }
+    withName: 'CREATE_HTML_REPORT' {
+    cpus = { 1 }
     memory = { 24.GB * task.attempt }
     } 
 
