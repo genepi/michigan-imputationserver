@@ -16,7 +16,7 @@
     
     
       
-        <title>Setting up a local imputation server - Michigan Imputation Server 2</title>
+        <title>Setting up a local PGS server - Michigan Imputation Server 2</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#setting-up-a-local-imputation-server" class="md-skip">
+        <a href="#setting-up-a-local-pgs-server" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Setting up a local imputation server
+              Setting up a local PGS server
             
           </span>
         </div>
@@ -884,18 +884,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-install-the-imputation-server-pipeline-and-reference-panels" class="md-nav__link">
+  <a href="#step-3-install-the-pgs-calc-server-pipeline-pgs-catalog-and-reference-panel" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 - Install the imputation server pipeline and reference panels
+      Step 3 - Install the PGS calc server pipeline, PGS catalog and reference panel
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-4-start-your-local-imputation-server" class="md-nav__link">
+  <a href="#step-4-start-your-local-pgs-server" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4 - Start your local imputation server
+      Step 4 - Start your local PGS server
     </span>
   </a>
   
@@ -1054,14 +1054,14 @@
   
 
 
-<h1 id="setting-up-a-local-imputation-server">Setting up a local imputation server<a class="headerlink" href="#setting-up-a-local-imputation-server" title="Permanent link">&para;</a></h1>
+<h1 id="setting-up-a-local-pgs-server">Setting up a local PGS server<a class="headerlink" href="#setting-up-a-local-pgs-server" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The imputation server architecture is currently implemented in three publicly available servers: the <a href="https://imputationserver.sph.umich.edu/">Michigan Imputation Server</a>, the <a href="https://imputation.biodatacatalyst.nhlbi.nih.gov/">TOPMed Imputation Server</a>, and the <a href="https://imputationserver.helmholtz-munich.de">Helmholtz Munich Server</a>. </p>
-<p><strong>One of our primary goals is to enable others to set up their own imputation server using our architecture.</strong> Such servers can then be utilized internally (e.g., within an institution to keep array or sequence data locally) or made accessible to external users, by providing sensitive reference panels to the community. </p>
-<p>In this tutorial we show how to setup the latest imputation service locally by using already available reference panels.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are interested in setting-up your own reference panel, please contact us. We are currently working on a pipeline to create the required structure automatically.</p>
+<p>The Polygenic Score Calulation server allows the computation of polygenic risks based on imputed genotype and summary statistic, either provided locally or available through the <a href="https://www.pgscatalog.org">PGS-catalog</a>. For further details on the underlying pipeline, click <a href="../../pgs/getting-started/">here</a>.</p>
+<p><strong>One of our primary goals is to enable others to set up their own PGS calculation server using our architecture.</strong> Such servers can then be utilized internally (e.g., within an institution to keep array or sequence data locally) or made accessible to external users, by providing sensitive reference panels to the community. </p>
+<p>In this tutorial we show how to setup the latest PGS service locally by using already available reference panels.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>We are currently providing the HapMap2 panel and the 1000G Phase 3 Panel for download. The HRC panel is not publicly available.  </p>
 </div>
 <h2 id="prerequistes">Prerequistes<a class="headerlink" href="#prerequistes" title="Permanent link">&para;</a></h2>
 <p>The following software is required to set up your own server. We specifically tested it on different Linux versions and on macOS.</p>
@@ -1074,47 +1074,62 @@
 <h2 id="step-by-step-guide">Step by Step Guide<a class="headerlink" href="#step-by-step-guide" title="Permanent link">&para;</a></h2>
 <h3 id="step-1-create-a-local-directory">Step 1 - Create a local directory<a class="headerlink" href="#step-1-create-a-local-directory" title="Permanent link">&para;</a></h3>
 <p>The main installation directory contains all the necessary data to run a local instance of the imputation server. By default, it also stores all job results, the installed applications, and the database. All paths can be customized in the <code>settings.yaml</code> file at a later point. For now, please note that this directory can grow quite large.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>imputationserver
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mkdir<span class="w"> </span>pgscalcserver
 </code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
 <p>In a Slurm setup, make sure this directory is located on a shared drive that is accessible by all nodes.</p>
 </div>
 <h3 id="step-2-install-cloudgene">Step 2 - Install Cloudgene<a class="headerlink" href="#step-2-install-cloudgene" title="Permanent link">&para;</a></h3>
 <p>Cloudgene 3 offers a platform that converts Nextflow pipelines into scalable web services with just a few steps. More details are available in <a href="https://doi.org/10.1101/2024.10.27.620456">our preprint</a> and recent <a href="https://blog.stephenturner.us/i/150610509/cloudgene-transforming-nextflow-pipelines-into-powerful-web-services">blog post</a>.</p>
 <p>To install Cloudgene 3, run the following command:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>imputationserver
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>pgscalcserver
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://get.cloudgene.io<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>./cloudgene<span class="w"> </span>version
 </code></pre></div>
 <p>If the last command successfully returns the currently installed version, everything is set up correctly.</p>
-<h3 id="step-3-install-the-imputation-server-pipeline-and-reference-panels">Step 3 - Install the imputation server pipeline and reference panels<a class="headerlink" href="#step-3-install-the-imputation-server-pipeline-and-reference-panels" title="Permanent link">&para;</a></h3>
-<p>In Cloudgene 3, everything is considered an app. This means that both the imputation server pipeline and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our <a href="https://github.com/genepi/imputationserver2">Nextflow pipeline</a> directly from GitHub and the Hapmap2 panel from an HTTP address. </p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span>./cloudgene<span class="w"> </span>install<span class="w"> </span>genepi/imputationserver2
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span>./cloudgene<span class="w"> </span>install<span class="w"> </span>https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-hapmap2.zip
+<h3 id="step-3-install-the-pgs-calc-server-pipeline-pgs-catalog-and-reference-panel">Step 3 - Install the PGS calc server pipeline,  PGS catalog and reference panel<a class="headerlink" href="#step-3-install-the-pgs-calc-server-pipeline-pgs-catalog-and-reference-panel" title="Permanent link">&para;</a></h3>
+<p>In Cloudgene 3, everything is considered as an app. This means that both the PGS calculation server pipeline, the PGS catalog and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our <a href="https://github.com/genepi/imputationserver2">PGS-calc</a> from the local repository, and the Hapmap2 panel and PGS catalog from an HTTP address.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Install PGS pipeline</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w"> </span>./cloudgene<span class="w"> </span>install<span class="w"> </span>genepi/imputationserver2/cloudgene.pgs.yaml
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Install reference panel</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w"> </span>./cloudgene<span class="w"> </span>install<span class="w"> </span>https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-hapmap2.zip
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Install PGS catalog including a subset of scores</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>./cloudgene<span class="w"> </span>install<span class="w"> </span>https://imputationserver.sph.umich.edu/resources/pgs-catalog/pgs-catalog-small.zip
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use <a href="https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip">this address</a>. 
- You can also download the pipeline or panel first and then specify a local path in the command above. </p>
+<ul>
+<li>
+<p>If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use <a href="https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip">https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip</a>. 
+Similarly, you can choose <a href="https://imputationserver.sph.umich.edu/resources/pgs-catalog/">different PGS catalogs</a> too. </p>
+</li>
+<li>
+<p>You can also download the resources first and then install it using the full path. </p>
+</li>
+</ul>
 </div>
 <p>Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.</p>
-<h3 id="step-4-start-your-local-imputation-server">Step 4 - Start your local imputation server<a class="headerlink" href="#step-4-start-your-local-imputation-server" title="Permanent link">&para;</a></h3>
+<h3 id="step-4-start-your-local-pgs-server">Step 4 - Start your local PGS server<a class="headerlink" href="#step-4-start-your-local-pgs-server" title="Permanent link">&para;</a></h3>
 <p>The local web service can now be started. By default, it runs on port 8082.</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w"> </span>./cloudgene<span class="w"> </span>server
 </code></pre></div>
 You can now open a local web browser and navigate to http://localhost:8082. This will display the default landing page, which can be customized later.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For server usage, run <code>./cloudgene server &amp;</code> to run it in the background when everything has been set up. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For server usage, run <code>./cloudgene server &amp;</code> to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use the <code>screen</code> commandline tool available for Linux and MacOS or use the <code>nohup</code> option.</p>
 </div>
 <p><img alt="" src="../../images/tutorials/local-server/cloidgene-fresh-install.png" /></p>
 <h3 id="step-5-login-and-run-your-first-workflow">Step 5 - Login and Run your first workflow<a class="headerlink" href="#step-5-login-and-run-your-first-workflow" title="Permanent link">&para;</a></h3>
 <p>You can now log in using the default credentials (username: <code>admin</code>, password: <code>admin1978</code>). The interface will change slightly, with the <strong>Run</strong> tab becoming available.</p>
 <p><img alt="" src="../../images/tutorials/local-server/cloudgene-login.png" /></p>
 <p>By clicking on the <strong>Run</strong> tab, you should see the imputation server workflow, just as you would in the Michigan Imputation Server. </p>
-<p><img alt="" src="../../images/tutorials/local-server/cloudgene-run.png" /></p>
+<p><img alt="" src="../../images/tutorials/local-PGS-server/pgs_calc_run.png" /></p>
 <p>This provides a basic setup for your local server and should already allow you to run a job on your local instance!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With the current setup, it's required that Docker is up and running. Check the interactive logs in case your job fails. If you want to run this with Slurm or Singulairy click <a href="#2-set-nextflow-profile">here</a>.</p>
+</div>
 <h2 id="tweak-your-instance-basics">Tweak your instance (Basics)<a class="headerlink" href="#tweak-your-instance-basics" title="Permanent link">&para;</a></h2>
 <p>Our architecture provides numerous customizable settings, accessible only to admin users. To modify them, click on the admin user and open the <strong>Admin Panel</strong>. The panel provides details about all users, jobs, and applications, and allows you to customize your instance through various settings.</p>
 <p><img alt="" src="../../images/tutorials/local-server/admin-server.png" /></p>
@@ -1122,24 +1137,24 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <p>First, let's check the overall server status, which includes the currently applied setup.</p>
 <p>Most importantly, check if Docker and Nextflow have been detected. For a local setup, you should see green checks for both.</p>
 <p><img alt="" src="../../images/tutorials/local-server/admin-server-2.png" /></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>The status of Singularity is currently not monitored by the instance.</p>
 </div>
 <h3 id="2-set-nextflow-profile">2) Set Nextflow profile<a class="headerlink" href="#2-set-nextflow-profile" title="Permanent link">&para;</a></h3>
-<p>Next, we need to specify the default Nextflow profile for the pipeline. For the imputation server, Docker is already set as the default profile. However, for this tutorial, we will configure it explicitly. Click on Apps in the Admin Panel, then click on the gear icon.</p>
-<p><img alt="" src="../../images/tutorials/local-server/admin-profile.png" /></p>
+<p>Next, we need to specify the default Nextflow profile for the pipeline. For the pgs-calc server, Docker is already set as the default profile. However, for this tutorial, we will configure it explicitly. Click on Apps in the Admin Panel, then click on the gear icon.</p>
+<p><img alt="" src="../../images/tutorials/local-PGS-server/admin-profile.png" /></p>
 <p>Now, set the profile value to 'docker' and click <strong>Save Changes</strong>.</p>
-<p><img alt="" src="../../images/tutorials/local-server/admin-profile-2.png" /></p>
+<p><img alt="" src="../../images/tutorials/local-PGS-server/admin-profile-2.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please note that we also provide other <a href="https://github.com/genepi/imputationserver2/blob/main/nextflow.config">profiles</a>, such as Slurm or Singularity profiles. </p>
+<p>Please note that we also provide other <a href="https://github.com/genepi/imputationserver2/blob/main/nextflow.config">profiles</a>, currently slurm or singularity. </p>
 </div>
 <h3 id="3-setting-up-a-mail-server">3) Setting up a mail server<a class="headerlink" href="#3-setting-up-a-mail-server" title="Permanent link">&para;</a></h3>
 <p>A mail server is required for user registration. You can configure it in the Admin Panel by navigating to <strong>Settings</strong> -&gt; <strong>Mail</strong>. We recommend using a mail relay. If you set a password, please note that it will be stored in plain text in the <code>settings.yaml</code> file.
 <img alt="" src="../../images/tutorials/local-server/admin-mail.png" /></p>
 <h3 id="4-setting-up-nextflow-mail-support">4) Setting up Nextflow mail support<a class="headerlink" href="#4-setting-up-nextflow-mail-support" title="Permanent link">&para;</a></h3>
-<p>The Nextflow pipeline is one of the two key components of the imputation server. To adjust its settings, go to <strong>Admin Panel</strong> -&gt; <strong>Settings</strong> -&gt; <strong>Nextflow</strong>. Any configurations specified here will be applied to all apps. Alternatively, you can define app-specific Nextflow configurations by selecting <strong>Apps</strong> and clicking on the gear icon for a specific app.</p>
+<p>The Nextflow pipeline is one of the two key components of the pgs-calc server. To adjust its settings, go to <strong>Admin Panel</strong> -&gt; <strong>Settings</strong> -&gt; <strong>Nextflow</strong>. Any configurations specified here will be applied to all apps. Alternatively, you can define app-specific Nextflow configurations by selecting <strong>Apps</strong> and clicking on the gear icon for a specific app.</p>
 <p>The first setting you can customize is the mail configuration for sending notifications from the pipeline. Copy the following snippet to use the mail server configuration and apply it to your Nextflow pipeline.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>params.send_mail=true
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>mail {
@@ -1149,7 +1164,7 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>}
 </code></pre></div>
 <h3 id="set-parameters">Set parameters<a class="headerlink" href="#set-parameters" title="Permanent link">&para;</a></h3>
-<p>The Imputation Server pipeline offers a comprehensive set of <a href="https://github.com/genepi/imputationserver2?tab=readme-ov-file#parameters">parameters</a>. To customize these parameters, add them to the Nextflow section. The following snippet demonstrates how to modify specific parameters:
+<p>The pgs-calc Server pipeline offers a comprehensive set of <a href="https://github.com/genepi/imputationserver2?tab=readme-ov-file#parameters">parameters</a>. To customize these parameters, add them to the Nextflow section. The following snippet demonstrates how to modify specific parameters:
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>params.max_samples = 40000
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>params.min_samples = 1
 </code></pre></div></p>
@@ -1176,7 +1191,7 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nv">scratch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/data/nextflow-scratch&#39;</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
 <a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span>//<span class="w"> </span>default<span class="w"> </span>queue
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nv">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mis-imputation&#39;</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="nv">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;pgs-calc-server&#39;</span>
 <a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 <a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span>withLabel:<span class="w"> </span>preprocessing<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">        </span><span class="nv">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mis-preprocessing&#39;</span>
@@ -1188,23 +1203,23 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 <a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">        </span><span class="nv">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;mis-phasing&#39;</span>
 <a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
-<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;EAGLE&#39;</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">}</span>
-<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">24</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;CALCULATE_CHUNKS&#39;</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">12</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
 <a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a>
-<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;BEAGLE&#39;</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;MERGE_CHUNK_SCORES&#39;</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">}</span>
-<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">24</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">12</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
 <a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>
-<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;MINIMAC4&#39;</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;MERGE_CHUNK_INFOS&#39;</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">}</span>
-<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">24</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">12</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
 <a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="o">}</span>
 <a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a>
-<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;COMPRESSION_ENCRYPTION_VCF&#39;</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">}</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">    </span>withName:<span class="w"> </span><span class="s1">&#39;CREATE_HTML_REPORT&#39;</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">    </span><span class="nv">cpus</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">}</span>
 <a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">    </span><span class="nv">memory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="m">24</span>.GB<span class="w"> </span>*<span class="w"> </span>task.attempt<span class="w"> </span><span class="o">}</span>
 <a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span>
 <a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>
