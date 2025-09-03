@@ -1,11 +1,15 @@
 # Setting up a local PGS server
 
 ## Introduction
-The Polygenic Score Calulation server allows the computation of polygenic risks based on imputed genotype and summary statistic, either provided locally or available through the [PGS-catalog](https://www.pgscatalog.org). For further details on the pipeline see [pgs-calc pipeline](../pgs/getting-started.md)
+The Polygenic Score Calulation server allows the computation of polygenic risks based on imputed genotype and summary statistic, either provided locally or available through the [PGS-catalog](https://www.pgscatalog.org). For further details on the underlying pipeline, click [here](../pgs/getting-started.md).
 
 **One of our primary goals is to enable others to set up their own PGS calculation server using our architecture.** Such servers can then be utilized internally (e.g., within an institution to keep array or sequence data locally) or made accessible to external users, by providing sensitive reference panels to the community. 
 
 In this tutorial we show how to setup the latest PGS service locally by using already available reference panels.
+
+!!! info
+
+    We are currently providing the HapMap2 panel and the 1000G Phase 3 Panel for download. The HRC panel is not publicly available.  
 
 ## Prerequistes
 The following software is required to set up your own server. We specifically tested it on different Linux versions and on macOS.
@@ -44,28 +48,29 @@ If the last command successfully returns the currently installed version, everyt
 
 ### Step 3 - Install the PGS calc server pipeline,  PGS catalog and reference panel
 
-In Cloudgene 3, everything is considered an app. This means that both the PGS calculation server pipeline, the PGS catalog and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our [PGS-calc](https://github.com/genepi/imputationserver2) from the local repository, and the Hapmap2 panel and PGS catalog from an HTTP address.
+In Cloudgene 3, everything is considered as an app. This means that both the PGS calculation server pipeline, the PGS catalog and the reference panels can be installed through Cloudgene. Apps can be installed either via the graphical interface or the command line. In this case, we will install the latest version of our [PGS-calc](https://github.com/genepi/imputationserver2) from the local repository, and the Hapmap2 panel and PGS catalog from an HTTP address.
 
 ```bash
-# get a local copy of the repository
-git clone https://github.com/genepi/imputationserver2
-# PGS pipeline
- ./cloudgene install imputationserver2/cloudgene.pgs.yaml
-# reference frame
+
+# Install PGS pipeline
+ ./cloudgene install genepi/imputationserver2/cloudgene.pgs.yaml
+# Install reference panel
  ./cloudgene install https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-hapmap2.zip
-# PGS catalog
+# Install PGS catalog including a subset of scores
 ./cloudgene install https://imputationserver.sph.umich.edu/resources/pgs-catalog/pgs-catalog-small.zip
 ```
 
 !!! note
 
-    If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [this address](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
-    Similarly, you can choose [different PGS catalogs](https://imputationserver.sph.umich.edu/resources/pgs-catalog/) too.
+    * If you want to install the large 1000 Genomes Phase 3 reference panel (hg19) instead, use [https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip](https://imputationserver.sph.umich.edu/resources/ref-panels/imputationserver2-1000genomes-phase3-public.zip). 
+    Similarly, you can choose [different PGS catalogs](https://imputationserver.sph.umich.edu/resources/pgs-catalog/) too. 
+
+    * You can also download the resources first and then install it using the full path. 
 
 
 Since we have now installed all the required apps, we will refer to the installation as the imputation server, even though technically it is a Cloudgene instance.
 
-### Step 4 - Start your local imputation server
+### Step 4 - Start your local PGS server
 The local web service can now be started. By default, it runs on port 8082.
 
 ```bash
@@ -75,7 +80,7 @@ You can now open a local web browser and navigate to http://localhost:8082. This
 
 !!! tip
 
-    For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use `nohup`.
+    For server usage, run ```./cloudgene server &``` to run it in the background when everything has been set up. To persist the job after logging out from a remote session, use the `screen` commandline tool available for Linux and MacOS or use the `nohup` option.
 
 ![](../images/tutorials/local-server/cloidgene-fresh-install.png)
 
@@ -90,9 +95,9 @@ By clicking on the **Run** tab, you should see the imputation server workflow, j
 
 This provides a basic setup for your local server and should already allow you to run a job on your local instance!
 
-!!! tip
+!!! note
     
-    Make sure  `docker`, or `singularity`, is running!
+    With the current setup, it's required that Docker is up and running. Check the interactive logs in case your job fails. If you want to run this with Slurm or Singulairy click [here](#2-set-nextflow-profile).
 
 ## Tweak your instance (Basics)
 
@@ -123,7 +128,7 @@ Now, set the profile value to 'docker' and click **Save Changes**.
 
 !!! note
 
-    Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), such as Slurm or Singularity profiles. 
+    Please note that we also provide other [profiles](https://github.com/genepi/imputationserver2/blob/main/nextflow.config), currently slurm or singularity. 
 
 ### 3) Setting up a mail server
 A mail server is required for user registration. You can configure it in the Admin Panel by navigating to **Settings** -> **Mail**. We recommend using a mail relay. If you set a password, please note that it will be stored in plain text in the ```settings.yaml``` file.
