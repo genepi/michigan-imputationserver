@@ -38,6 +38,15 @@ All the core is open source. If you have interest to build and host your own Imp
 
 ---
 
+### Build your own pgs-calc server
+PGS-calc server has been released as part of the imputation server pipeline. 
+Source code is available [herer](https://github.com/genepi/imputationserver2).
+Please follow the instruction to install available here:
+
+[Learn more](tutorials/local-PGS-server.md)
+
+---
+
 # Workshops
 
 - [ASHG 2023](workshops/ASHG2023.md)
