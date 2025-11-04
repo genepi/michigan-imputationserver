@@ -44,7 +44,7 @@ Our PGS extension offers genotype imputation from different reference panels. Th
 - 1000 Genomes Phase 1 (Version 3)
 - HapMap 2
 
-More details about all available reference panels can be found [here](https://imputationserver.readthedocs.io/en/latest/reference-panels/). If you are unsure which reference panel to use, the "1000 Genomes Phase 3 (Version 5)" reference panel is multi-ancestry and has high coverage with available scores. However, if your uploaded data is European only, the HRC reference panel could be the better choice, as it enables the imputation of rare European-specific variants.
+More details about all available reference panels can be found [here](../reference-panels.md). If you are unsure which reference panel to use, the "1000 Genomes Phase 3 (Version 5)" reference panel is multi-ancestry and has high coverage with available scores. However, if your uploaded data is European only, the HRC reference panel could be the better choice, as it enables the imputation of rare European-specific variants.
 
 ### Upload VCF files from your computer
 
@@ -57,11 +57,11 @@ After you have confirmed your choice, all selected files are listed in the submi
 
 ![](images/upload-data02.png)
 
-Please make sure that all files fulfill the [requirements](/prepare-your-data).
+Please make sure that all files fulfill the [requirements](../../prepare-your-data).
 
 
 !!! important
-Since version 1.7.2 URL-based uploads (sftp and http) are no longer supported. Please use direct file uploads instead.
+    Since version 1.7.2 URL-based uploads (sftp and http) are no longer supported. Please use direct file uploads instead.
 
 ### rsq Filter
 The filter ensures that only variants with an imputation quality (rsq) greater than the specified value are included in the polygenic risk score calculation. Setting the value to 0 disables the filter. Default value: 0.3.
